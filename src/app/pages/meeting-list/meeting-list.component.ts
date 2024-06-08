@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ApiService } from 'src/app/globals/services/api.service';
 
 @Component({
   selector: 'app-meeting-list',
@@ -8,9 +9,15 @@ import { CommonModule } from '@angular/common';
   templateUrl: './meeting-list.component.html',
   styleUrls: ['./meeting-list.component.css']
 })
-export class MeetingListComponent {
-  meetings = [
-    { id: 1, username: 'John', room: 'Room 1', date: '2023-06-08', from: '10:00', to: '11:00', agenda: 'Project Meeting' }
-    // Add more meetings as needed for initial setup
-  ];
+export class MeetingListComponent implements OnInit {
+
+  constructor(private apiService: ApiService) {}
+
+  meetings: any[] = [];
+
+  ngOnInit(): void {
+    this.apiService.getMeetings().subscribe(meetings => {
+      this.meetings = meetings;
+    });
+  }
 }
