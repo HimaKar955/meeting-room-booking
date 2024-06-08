@@ -1,1 +1,6 @@
-<p>meeting-list works!</p>
+<h2>Meetings List</h2>
+<ul>
+  <li *ngFor="let meeting of meetings">
+    {{ meeting.date }} {{ meeting.from }} - {{ meeting.to }} : {{ meeting.agenda }} by {{ meeting.username }}
+  </li>
+</ul>

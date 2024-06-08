@@ -9,5 +9,5 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./meeting-form.component.css']
 })
 export class MeetingFormComponent {
-
+  rooms = Array.from({ length: 10 }, (_, i) => `Room ${i + 1}`);
 }

@@ -1,1 +1,18 @@
-<p>meeting-form works!</p>
+<h2>Book a Meeting Room</h2>
+<form>
+  <label for="username">Username:</label>
+  <input id="username" type="text">
+  <label for="room">Room:</label>
+  <select id="room">
+    <option *ngFor="let room of rooms" [value]="room">{{ room }}</option>
+  </select>
+  <label for="date">Date:</label>
+  <input id="date" type="date">
+  <label for="from">From:</label>
+  <input id="from" type="time">
+  <label for="to">To:</label>
+  <input id="to" type="time">
+  <label for="agenda">Agenda:</label>
+  <input id="agenda" type="text">
+  <button type="submit">Book</button>
+</form>

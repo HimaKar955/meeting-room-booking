@@ -1,1 +1,10 @@
-<p>room-status works!</p>
+<h2>Room Status</h2>
+<input type="date">
+<input type="time">
+<input type="time">
+<button>Check Status</button>
+<ul>
+  <li *ngFor="let status of statuses">
+    {{ status.room }} is {{ status.status }}
+  </li>
+</ul>
