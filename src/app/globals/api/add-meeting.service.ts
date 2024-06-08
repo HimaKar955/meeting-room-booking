@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-interface Meeting {
+export interface Meeting {
   id: number;
   username: string;
   room: string;

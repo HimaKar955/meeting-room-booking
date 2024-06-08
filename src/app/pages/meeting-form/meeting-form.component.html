@@ -1,18 +1,43 @@
-<h2>Book a Meeting Room</h2>
-<form>
-  <label for="username">Username:</label>
-  <input id="username" type="text">
-  <label for="room">Room:</label>
-  <select id="room">
-    <option *ngFor="let room of rooms" [value]="room">{{ room }}</option>
-  </select>
-  <label for="date">Date:</label>
-  <input id="date" type="date">
-  <label for="from">From:</label>
-  <input id="from" type="time">
-  <label for="to">To:</label>
-  <input id="to" type="time">
-  <label for="agenda">Agenda:</label>
-  <input id="agenda" type="text">
-  <button type="submit">Book</button>
-</form>
+<form [formGroup]="meetingForm" (submit)="onSubmit()">
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" id="username" formControlName="username" required>
+      <div *ngIf="meetingForm.get('username')?.invalid && meetingForm.get('username')?.touched">
+        Username is required
+      </div>
+    </div>
+    <div>
+      <label for="room">Room:</label>
+      <input type="text" id="room" formControlName="room" required>
+      <div *ngIf="meetingForm.get('room')?.invalid && meetingForm.get('room')?.touched">
+        Room is required
+      </div>
+    </div>
+    <div>
+      <label for="date">Date:</label>
+      <input type="date" id="date" formControlName="date" required>
+      <div *ngIf="meetingForm.get('date')?.invalid && meetingForm.get('date')?.touched">
+        Date is required
+      </div>
+    </div>
+    <div>
+      <label for="from">From:</label>
+      <input type="time" id="from" formControlName="from" required>
+      <div *ngIf="meetingForm.get('from')?.invalid && meetingForm.get('from')?.touched">
+        From time is required
+      </div>
+    </div>
+    <div>
+      <label for="to">To:</label>
+      <input type="time" id="to" formControlName="to" required>
+      <div *ngIf="meetingForm.get('to')?.invalid && meetingForm.get('to')?.touched">
+        To time is required
+      </div>
+    </div>
+    <div>
+      <label for="agenda">Agenda:</label>
+      <textarea id="agenda" formControlName="agenda"></textarea>
+    </div>
+    <button type="submit" [disabled]="meetingForm.invalid">Book Meeting</button>
+  </form>
+  

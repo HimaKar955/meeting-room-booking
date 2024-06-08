@@ -10,14 +10,17 @@ import { ApiService } from 'src/app/globals/services/api.service';
   styleUrls: ['./meeting-list.component.css']
 })
 export class MeetingListComponent implements OnInit {
+  meetings: any[] = [];
 
   constructor(private apiService: ApiService) {}
-
-  meetings: any[] = [];
 
   ngOnInit(): void {
     this.apiService.getMeetings().subscribe(meetings => {
       this.meetings = meetings;
     });
+  }
+
+  onDelete(id: number): void {
+    this.apiService.deleteMeeting(id);
   }
 }
