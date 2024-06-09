@@ -1,20 +1,38 @@
 body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-  }
-  
-  .App {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  nav a {
-    margin-right: 15px;
-    text-decoration: none;
-    color: #007bff;
-  }
-  
-  nav a.active {
-    font-weight: bold;
-  }
-  
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.App {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+nav a {
+  margin-right: 15px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+nav a.active {
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+nav a {
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+nav a.active {
+  background-color: #f1f1f1;
+  border-bottom: 1px solid transparent;
+}

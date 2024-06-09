@@ -1,18 +1,10 @@
 <ul>
   <li *ngFor="let meeting of meetings">
-    <div>
-      <strong>Username:</strong> {{ meeting.username }}
-    </div>
-    <div>
-      <strong>Room:</strong> {{ meeting.room }}
-    </div>
-    <div>
-      <strong>Date:</strong> {{ meeting.date }}
-    </div>
-    <div>
-      <strong>Time:</strong> {{ meeting.from }} - {{ meeting.to }}
-    </div>
-    <div>
+    <div class="meeting-details">
+      <strong>Username:</strong> {{ meeting.username }}<br>
+      <strong>Room:</strong> {{ meeting.room }}<br>
+      <strong>Date:</strong> {{ meeting.date }}<br>
+      <strong>Time:</strong> {{ meeting.from }} - {{ meeting.to }}<br>
       <strong>Agenda:</strong> {{ meeting.agenda }}
     </div>
     <button (click)="onDelete(meeting.id)">Delete</button>

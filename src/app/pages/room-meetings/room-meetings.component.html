@@ -1,4 +1,4 @@
-<div>
+<div class="login-form">
     <label for="room">Select Room:</label>
     <select id="room" [(ngModel)]="selectedRoom" (change)="loadMeetingsForRoom(selectedRoom)">
       <option *ngFor="let room of rooms" [value]="room">{{ room }}</option>
