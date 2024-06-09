@@ -14,11 +14,17 @@ export class RoomStatusComponent {
   date: string = '';
   from: string = '';
   to: string = '';
-  roomStatus: { room: string, status: string }[] = [];
+  roomStatus: { room: string, status: string, user?: string }[] = [];
 
   constructor(private apiService: ApiService) {}
 
   onSubmit(): void {
     this.roomStatus = this.apiService.getRoomStatus(this.date, this.from, this.to);
+    this.roomStatus.forEach(room => {
+      if (room.status !== 'Available') {
+        // Fetch user details for booked and in-use meetings
+        room.user = this.apiService.getUserForMeeting(room.room, this.date, this.from, this.to);
+      }
+    });
   }
 }

@@ -1,0 +1,29 @@
+<div>
+    <label for="room">Select Room:</label>
+    <select id="room" [(ngModel)]="selectedRoom" (change)="loadMeetingsForRoom(selectedRoom)">
+      <option *ngFor="let room of rooms" [value]="room">{{ room }}</option>
+    </select>
+  </div>
+  
+  <h2>Scheduled Meetings for Room: {{ selectedRoom }}</h2>
+  
+  <ul>
+    <li *ngFor="let meeting of meetings">
+      <div>
+        <strong>Username:</strong> {{ meeting.username }}
+      </div>
+      <div>
+        <strong>Date:</strong> {{ meeting.date }}
+      </div>
+      <div>
+        <strong>From:</strong> {{ meeting.from }}
+      </div>
+      <div>
+        <strong>To:</strong> {{ meeting.to }}
+      </div>
+      <div>
+        <strong>Agenda:</strong> {{ meeting.agenda }}
+      </div>
+    </li>
+  </ul>
+  

@@ -1,27 +1,29 @@
 <form (submit)="onSubmit()">
+  <div>
+    <label for="date">Date:</label>
+    <input type="date" id="date" [(ngModel)]="date" name="date" required>
+  </div>
+  <div>
+    <label for="from">From:</label>
+    <input type="time" id="from" [(ngModel)]="from" name="from" required>
+  </div>
+  <div>
+    <label for="to">To:</label>
+    <input type="time" id="to" [(ngModel)]="to" name="to" required>
+  </div>
+  <button type="submit">Check Room Status</button>
+</form>
+
+<ul>
+  <li *ngFor="let room of roomStatus">
     <div>
-      <label for="date">Date:</label>
-      <input type="date" id="date" [(ngModel)]="date" required>
+      <strong>Room:</strong> {{ room.room }}
     </div>
     <div>
-      <label for="from">From:</label>
-      <input type="time" id="from" [(ngModel)]="from" required>
+      <strong>Status:</strong> {{ room.status }}
     </div>
-    <div>
-      <label for="to">To:</label>
-      <input type="time" id="to" [(ngModel)]="to" required>
+    <div *ngIf="room.status !== 'Available'">
+      <strong>User:</strong> {{ room.user }}
     </div>
-    <button type="submit">Check Room Status</button>
-  </form>
-  
-  <ul>
-    <li *ngFor="let status of roomStatus">
-      <div>
-        <strong>Room:</strong> {{ status.room }}
-      </div>
-      <div>
-        <strong>Status:</strong> {{ status.status }}
-      </div>
-    </li>
-  </ul>
-  
+  </li>
+</ul>
