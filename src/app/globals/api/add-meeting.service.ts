@@ -24,18 +24,15 @@ export class AddMeetingService {
     if (data) {
       return JSON.parse(data);
     } else {
-      // Generate random data if no meetings are available
       const randomMeetings: Meeting[] = [];
-      const roomNames = ['Room 1', 'Room 2', 'Room 3', 'Room 4', 'Room 5'];
+      const roomNames = ['Room 1', 'Room 2', 'Room 3', 'Room 4', 'Room 5', 'Room 6', 'Room 7', 'Room 8', 'Room 9', 'Room 10'];
       const usernames = ['John Doe', 'Alice Smith', 'Bob Johnson', 'Emily Brown', 'Michael Davis'];
-  
       const currentDate = new Date();
-      const currentDateStr = currentDate.toISOString().slice(0, 10); // Format: YYYY-MM-DD
-  
+      const currentDateStr = currentDate.toISOString().slice(0, 10);
+
       for (let i = 0; i < 5; i++) {
         const randomRoomIndex = Math.floor(Math.random() * roomNames.length);
         const randomUserIndex = Math.floor(Math.random() * usernames.length);
-  
         const randomMeeting: Meeting = {
           id: i + 1,
           username: usernames[randomUserIndex],
@@ -45,15 +42,14 @@ export class AddMeetingService {
           to: '10:00',
           agenda: 'Random agenda'
         };
-  
+
         randomMeetings.push(randomMeeting);
       }
-  
+
       localStorage.setItem(this.localStorageKey, JSON.stringify(randomMeetings));
       return randomMeetings;
     }
   }
-  
 
   private saveMeetings(): void {
     localStorage.setItem(this.localStorageKey, JSON.stringify(this.meetings));
@@ -63,6 +59,10 @@ export class AddMeetingService {
     this.meetings.push({ ...meeting, id: Date.now() });
     this.saveMeetings();
     this.meetingsSubject.next(this.meetings);
+  }
+
+  getMeetingsForDate(date: string): Meeting[] {
+    return this.meetings.filter(meeting => meeting.date === date);
   }
 
   getMeetingsSubject(): BehaviorSubject<Meeting[]> {

@@ -8,7 +8,10 @@
     </div>
     <div>
       <label for="room">Room:</label>
-      <input type="text" id="room" formControlName="room" required>
+      <select id="room" formControlName="room" required>
+        <option value="" disabled>Select a room</option>
+        <option *ngFor="let room of availableRooms" [value]="room">{{ room }}</option>
+      </select>
       <div *ngIf="meetingForm.get('room')?.invalid && meetingForm.get('room')?.touched">
         Room is required
       </div>

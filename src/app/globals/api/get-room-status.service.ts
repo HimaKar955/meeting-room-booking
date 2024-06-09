@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
-import { GetMeetingsForRoomService } from './get-meetings-for-room.service';
+import { AddMeetingService } from './add-meeting.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetRoomStatusService {
-  constructor(private getMeetingsForRoomService: GetMeetingsForRoomService) {}
+  constructor(private addMeetingService: AddMeetingService) {}
 
   getRoomStatus(date: string, from: string, to: string): { room: string, status: string }[] {
     const rooms = Array.from({ length: 10 }, (_, i) => `Room ${i + 1}`);
     return rooms.map(room => {
-      const meetings = this.getMeetingsForRoomService.getMeetingsForRoom(room);
+      const meetings = this.addMeetingService.getMeetingsForDate(date).filter(meeting => meeting.room === room);
       const inUse = meetings.some(meeting =>
-        meeting.date === date &&
-        ((meeting.from <= from && meeting.to > from) || (meeting.from < to && meeting.to >= to))
+        (meeting.from < to && meeting.to > from) // Check if times overlap
       );
       return { room, status: inUse ? 'In-Use' : 'Available' };
     });
